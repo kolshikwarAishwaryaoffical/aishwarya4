@@ -1,0 +1,79 @@
+package com.example.assigntask.serviceimpl;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.assigntask.modal.Employee;
+import com.example.assigntask.modal.TaskAssign;
+import com.example.assigntask.repository.EmployeeRepositoryinter;
+import com.example.assigntask.repository.TaskRepository;
+import com.example.assigntask.service.TaskService;
+
+@Service
+public class TaskServiceImpl implements TaskService{
+
+	@Autowired
+	private TaskRepository taskRepository;
+	@Autowired
+	private EmployeeRepositoryinter inter;
+
+	public TaskServiceImpl(TaskRepository taskRepository) {
+		super();
+		this.taskRepository = taskRepository;
+	}
+    //without
+	@Override
+	public TaskAssign saveTask(TaskAssign taskAssign,Employee e,String emailId) {
+		//taskAssign.setTaskName(taskAssign.getEmailId());
+		
+		String t1= taskAssign.getMemailId();
+	     String e1=inter.findByMemailId(t1);
+	    
+	     
+	     System.out.println(t1);
+	     System.out.println(e1);
+	     
+		
+		if(!(t1.equals(e1))||(taskAssign.getDueDate().isBefore(LocalDate.now()))) {
+			throw new RuntimeException("Task can't assign ");
+		}
+		else if((t1.equals(e1))||(taskAssign.getDueDate().isAfter(LocalDate.now()))) {
+			taskAssign.setTaskStatus("NotCompleted");
+		}
+		
+		return taskRepository.save(taskAssign);
+	}
+//    
+//	@Override
+//	public TaskAssign saveTask(TaskAssign taskAssign,String email_id) {
+//
+//		
+//       Employee e11=inter.findByEmailId(email_id);
+//      // Employee e12 = inter.findByMemailId(e11.getMemailId());
+//       
+//       if(email_id.equals(e11.getEmailId())) {
+//    	   taskAssign.setEmailId(email_id);
+//    	   taskAssign.setTaskStatus("NotCompleted");
+//       }
+//       else {
+//    	   System.out.println("employee not added ");
+//       }
+//		
+//		//taskAssign.setEmail_id(taskRepository.setEmpemailToTask(memail_id));
+//		
+//		return taskRepository.save(taskAssign);
+//	}
+
+	//	@Override
+	//	public String setEmpemailToTask(String memail_id) {
+	//		// TODO Auto-generated method stub
+	//		return  taskRepository.setEmpemailToTask(memail_id);
+	//	}
+
+
+
+
+
+}

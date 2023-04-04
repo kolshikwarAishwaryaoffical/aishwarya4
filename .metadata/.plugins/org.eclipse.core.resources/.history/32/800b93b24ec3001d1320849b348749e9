@@ -1,0 +1,29 @@
+package com.example.loginadmin.serviceimpl;
+
+import java.util.List;
+
+import com.example.loginadmin.models.Employee;
+import com.example.loginadmin.repository.EmployeeRepository;
+import com.example.loginadmin.service.EmployeeService;
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+	private EmployeeRepository employeeRepository;
+
+	public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+		super();
+		this.employeeRepository = employeeRepository;
+	}
+	
+	@Override
+	public Employee saveEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		return employeeRepository.save(employee);
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return employeeRepository.findAll();
+	}
+}

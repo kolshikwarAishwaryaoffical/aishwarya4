@@ -1,0 +1,31 @@
+package leaveapplication;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import io.restassured.http.ContentType;
+import static io.restassured.RestAssured.*;
+
+@SpringBootTest
+class LeaveManagementEmployeeApplicationTests {
+
+//	@Test
+//	void contextLoads() {
+//	}
+	
+	@Order(1)
+	@Test
+	void getEmpByEmailId(){
+  
+
+		given().header("Content_Type","application/json").contentType(ContentType.JSON).accept(ContentType.JSON)
+
+		.when()
+		.get("http://localhost:9011/leave/emp/aishwaryakolshikwar27@gmail.com")
+		.then()
+		.assertThat().statusCode(200);
+
+	}
+	
+
+}

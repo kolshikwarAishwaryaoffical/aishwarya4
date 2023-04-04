@@ -1,0 +1,15 @@
+package com.example.assigntask.service;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.assigntask.modal.OnlyProgress;
+
+public interface CheckProgressService {
+	
+	@Query(value="select * from ems.task where email_id=?",nativeQuery=true)
+	public List<OnlyProgress> getByEmailIdProgress(String email_id);
+	
+	
+}

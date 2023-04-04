@@ -1,0 +1,67 @@
+package com.example.loginadmin;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.ContextConfiguration;
+//import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.context.annotation.Configuration;
+
+import com.example.loginadmin.models.AuthenticationRequest;
+import com.example.loginadmin.models.Employee;
+
+//import groovyjarjarasm.asm.commons.Method;
+import io.restassured.http.ContentType;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer;
+import static io.restassured.RestAssured.*;
+
+@SpringBootTest
+class LoginAdminApplicationTests {
+	@Test	
+	void LoginTest() {
+		AuthenticationRequest authCheck = new AuthenticationRequest();
+		authCheck.setUsername("Admin");
+		authCheck.setPassword("Admin");
+
+		given().header("Content_Type","application/json").contentType(ContentType.JSON).accept(ContentType.JSON)
+		.body(authCheck)
+		.when()
+		.post("http://localhost:8080/authenticate")
+		.then()
+		.assertThat().statusCode(200);
+
+	}
+	@Test
+	void  saveEmployee() {
+		Employee e= new Employee();
+		e.setFirstName("Aishwarya");
+		e.setLastName("Kolshikwar");
+		e.setAddress("H.no-23");
+		e.setCity("Bns");
+		e.setCountry("India");
+//		e.setDateOfBirth(null);
+		e.setEmailId("abcd12@gmail.com");
+		e.setEmployeeId("905");
+		e.setGender("female");
+//		e.setMemailId("");
+//		e.setMobileNumber(898912334);
+		e.setPassword("Emp@2023");
+//		e.setPinCode();
+		e.setRole("Developer");
+		e.setState("TS");
+		
+
+		given().header("Content_Type","application/json").contentType(ContentType.JSON).accept(ContentType.JSON)
+		.body(e)
+		.when()
+		.post("http://localhost:8080/admin/employee/addemployee")
+		.then()
+		.assertThat().statusCode(201);
+		
+	}
+	
+
+
+
+}

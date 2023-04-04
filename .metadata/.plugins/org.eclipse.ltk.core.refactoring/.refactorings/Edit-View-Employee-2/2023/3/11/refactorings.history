@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.example.profile.exception&apos; to &apos;Login-Employee/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;Edit-View-Employee&apos;&#x0D;&#x0A;- Destination element: &apos;Login-Employee/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;Edit-View-Employee/src/main/java/com.example.profile.exception&apos;" description="Copy package" destination="=Login-Employee/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.example.profile.exception" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1679080898766" version="1.0"/>
+</session>

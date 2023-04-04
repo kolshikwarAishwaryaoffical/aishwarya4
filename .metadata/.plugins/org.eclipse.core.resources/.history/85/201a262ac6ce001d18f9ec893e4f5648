@@ -1,0 +1,54 @@
+package leaveapplication;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import io.restassured.http.ContentType;
+import leaveapplication.model.LeaveApply;
+
+import static io.restassured.RestAssured.*;
+
+@SpringBootTest
+class LeaveManagementEmployeeApplicationTests {
+
+//	@Test
+//	void contextLoads() {
+//	}
+	
+	@Order(1)
+	@Test
+	void getEmpByEmailId(){
+  
+
+		given().header("Content_Type","application/json").contentType(ContentType.JSON).accept(ContentType.JSON)
+
+		.when()
+		.get("http://localhost:9002/leave/emp/nayankolshikwar18@gmail.com")
+		.then()
+		.assertThat().statusCode(200);
+
+	}
+	@Order(2)
+	@Test
+	void saveLeave()
+	{
+		
+		LeaveApply l= new LeaveApply();
+		
+		l.setEmailId("Akshitha@gmail.com");
+		l.setFromDate(null);
+		l.setLeaveReason("from postman");
+		l.setLeaveStatus("hello");
+		l.setToDate(null);
+		l.setMemailId("Sravani@gmail.com");
+		
+		given().header("Content_Type","application/json").contentType(ContentType.JSON).accept(ContentType.JSON)
+         .body(l)
+		.when()
+		.post("http://localhost:9002/leave")
+		.then()
+		.assertThat().statusCode(201);
+		
+	}
+
+}

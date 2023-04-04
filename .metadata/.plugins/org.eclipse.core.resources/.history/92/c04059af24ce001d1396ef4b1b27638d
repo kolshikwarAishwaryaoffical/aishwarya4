@@ -1,0 +1,46 @@
+package com.example.loginsignupemployee;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import com.example.loginemployee.model.AuthenticationRequest;
+import io.restassured.http.ContentType;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import static io.restassured.RestAssured.*;
+
+
+
+
+@SuppressWarnings("unused")
+@SpringBootTest
+
+class LoginEmployeeApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+	
+	
+	
+	
+	@Test
+	@Order(1)
+	void loginTest() {
+		AuthenticationRequest authCheck = new AuthenticationRequest();
+		authCheck.setEmailId("aishwaryakolshikwar27@gmail.com");
+		authCheck.setPassword("Emp@2023");
+		
+		 given().header("Content-type","application/json").contentType(ContentType.JSON).accept(ContentType.JSON)
+		.body(jsonbody)
+		.when()
+		.post("http://localhost:8089/authenticate")
+		.then()
+		.asserThat().statusCode(200);
+		
+		
+		
+	}
+
+}

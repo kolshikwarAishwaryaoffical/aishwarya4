@@ -1,0 +1,14 @@
+package com.example.checkupdateprogress;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import io.restassured.http.ContentType;
+import static io.restassured.RestAssured.*;
+
+@SpringBootTest
+class CheckTaskAndUpdateProgressByEmployeeApplicationTests {
+
+	
+
+}

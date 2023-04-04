@@ -1,0 +1,46 @@
+package com.example.loginsignupemployee;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.ContextConfiguration;
+//import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextHierarchy;
+
+import com.example.loginemployee.model.AuthenticationRequest;
+
+//import groovyjarjarasm.asm.commons.Method;
+import io.restassured.http.ContentType;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer;
+import static io.restassured.RestAssured.*;
+
+
+
+@SuppressWarnings("unused")
+@Configuration
+@SpringBootTest
+@ContextHierarchy
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class LoginEmployeeApplicationTests {	
+	
+	@Test
+	@Order(1)
+	public void LoginTest() {
+		AuthenticationRequest authCheck = new AuthenticationRequest();
+		authCheck.setEmailId("aishwaryakolshikwar27@gmail.com");
+		authCheck.setPassword("Emp@2023");
+		
+		 given().header("Content-type","application/json").contentType(ContentType.JSON).accept(ContentType.JSON)
+		.body(authCheck)
+		.when()
+		.post("http://localhost:8089/authenticate")
+		.then()
+		.assertThat().statusCode(200);
+		
+		
+		
+	}
+
+}
